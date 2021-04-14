@@ -4,13 +4,18 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
+  <Router>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}
+      useEnterprise={true}
+      language="en"
+    >
       <App />
-    </Router>
-  </React.StrictMode>,
+    </GoogleReCaptchaProvider>
+  </Router>,
   document.getElementById('root')
 )
 
