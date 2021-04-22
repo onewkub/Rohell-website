@@ -1,48 +1,53 @@
 import { Form, Input, Button, Select, DatePicker, Result } from 'antd'
-import ragnarokHttprequest from 'lib/ragnnarok_api'
-import { useEffect, useState } from 'react'
+// import ragnarokHttprequest from 'lib/ragnnarok_api'
+import { useState } from 'react'
 import { RingLoader } from 'react-spinners'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+// import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 const { Option } = Select
 
 function RegisterPage() {
-  const [verify, setVerify] = useState<boolean>(false)
+  // const [verify, setVerify] = useState<boolean>(false)
   // eslint-disable-next-line
-  const [token, setToken] = useState<string>('')
+  // const [token, setToken] = useState<string>('')
   const [alreadyUse, setAlreadyUse] = useState<boolean>(false)
   const [sucess, setSucess] = useState<boolean>(false)
   const [form] = Form.useForm()
-  const recaptcha = useGoogleReCaptcha()
+  // const recaptcha = useGoogleReCaptcha()
   const [loading, setLoading] = useState<boolean>(false)
-  useEffect(() => {
-    setLoading(true)
-    async function getVerify() {
-      if (recaptcha.executeRecaptcha) {
-        const token = await recaptcha.executeRecaptcha('register_page')
-        // console.log(token)
-        setVerify(true)
-        setLoading(false)
-        setToken(token)
-      }
-    }
-    getVerify()
-    // console.log('get Verify')
-  }, [recaptcha])
+  // useEffect(() => {
+  //   setLoading(true)
+  //   async function getVerify() {
+  //     if (recaptcha.executeRecaptcha) {
+  //       const token = await recaptcha.executeRecaptcha('register_page')
+  //       // console.log(token)
+  //       setVerify(true)
+  //       setLoading(false)
+  //       setToken(token)
+  //     }
+  //   }
+  //   getVerify()
+  //   // console.log('get Verify')
+  // }, [recaptcha])
   const handleOnFinish = async (values: any) => {
     // console.log(values)
     setLoading(true)
-    const res = await ragnarokHttprequest.post('/register', values)
-    console.log(res.status)
-    if (res.status === 200) {
-      form.resetFields()
-      setSucess(true)
-      setAlreadyUse(false)
-    } else if (res.status === 409) {
-      console.log('your id is already used')
-      setAlreadyUse(true)
-      form.validateFields()
-    }
+    // const res = await ragnarokHttprequest.post('/register', values)
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+    // console.log(res.status)
+    // if (res.status === 200) {
+    //   form.resetFields()
+    //   setSucess(true)
+    //   setAlreadyUse(false)
+    // } else if (res.status === 409) {
+    //   console.log('your id is already used')
+    //   setAlreadyUse(true)
+    //   form.validateFields()
+    // }
+    form.resetFields()
+    setSucess(true)
+    setAlreadyUse(false)
+    console.log(values)
     setLoading(false)
   }
   if (loading) {
@@ -223,7 +228,7 @@ function RegisterPage() {
         </Form.Item>
         <Button
           block
-          disabled={!verify}
+          // disabled={!verify}
           size="large"
           type="primary"
           style={{ marginTop: 16 }}

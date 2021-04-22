@@ -8,9 +8,9 @@ function DownloadPage() {
         Download
       </h1>
       <div className="download-box">
-        <Title level={3}>ROHell.zip (2021-04-21)</Title>
+        <Title level={3}>No file</Title>
         <DownloadOutlined style={{ fontSize: 128 }} />
-        <Button href="https://bit.ly/3dfil96" size="large" type="primary">
+        <Button href="#" size="large" type="primary">
           Download
         </Button>
       </div>
